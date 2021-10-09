@@ -7,14 +7,24 @@ class HomePage extends BasePage{
         //locators
 
            this.title = '//span[@class="title"]'
-           this.addToCard1 = '#add-to-cart-sauce-labs-bike-light'
-           this.shoppingCard = '//a[@class="shopping_cart_link"]' 
+           this.addToCardButton = '#add-to-cart-sauce-labs-bike-light'
+           this.shoppingCardBadge = '//span[@class="shopping_cart_badge"]' 
+           this.removeFromCardButton = '//button[@id="remove-sauce-labs-bike-light"]'
     }
 
 
-    async clickOnAddToCard(button){
-       await this.page.click(button)
+    async ClickOnAddToCard(){
+       await this.page.click(this.addToCardButton)
 
+    }
+
+    async ClickOnRemoveButton(button){
+        await this.page.click(button)
+    }
+
+    async GetTextOfCard(){
+
+         return this.page.innerText(this.shoppingCardBadge)
     }
 
 

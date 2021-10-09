@@ -20,6 +20,7 @@ describe('sauce Lab Demo', () => {
         homePage = new HomePage(page);
         loginPage = new LoginPage(page);
         await loginPage.navigate();
+        await loginPage.login('standard_user','secret_sauce','https://www.saucedemo.com/inventory.html');
     });
 
     afterAll( async ()=>{
@@ -29,7 +30,16 @@ describe('sauce Lab Demo', () => {
     });
 
     it('Should be able to login', async() => {
-        await loginPage.login('standard_user','secret_sauce','https://www.saucedemo.com/inventory.html');
+        
         expect(await page.title()).not.toBeNull();
      })
+    
+     it('should be able to add items to card', async() => {
+        await homePage.ClickOnAddToCard();
+        
+        expect(await homePage.GetTextOfCard()).toBe("1");
+     })
+    
+    
+
     });
